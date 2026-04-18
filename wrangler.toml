@@ -1,0 +1,26 @@
+name = "whoop-proxy1"
+main = "src/index.ts"
+compatibility_date = "2025-11-01"
+workers_dev = true
+
+# Replace with the KV namespace id you get from:
+#   wrangler kv namespace create WHOOP_KV
+# and the preview id from:
+#   wrangler kv namespace create WHOOP_KV --preview
+[[kv_namespaces]]
+binding = "WHOOP_KV"
+id = "3970737087aa4d66b5fc629d76471ed9"
+preview_id = "REPLACE_WITH_PREVIEW_KV_ID"
+
+# Non-secret config. Secrets go in `wrangler secret put` — DO NOT put them here.
+[vars]
+SELF_ORIGIN         = "https://whoop-proxy.les-spellman.workers.dev"
+REDIRECT_AFTER_AUTH = "http://localhost:8000/athlete_management_live.html"
+ALLOWED_ORIGIN      = "http://localhost:8000"
+
+# Secrets to set via CLI (see README):
+#   WHOOP_CLIENT_ID
+#   WHOOP_CLIENT_SECRET
+#   APP_SECRET
+#   ENC_KEY
+#   WHOOP_WEBHOOK_SECRET   (optional — only if you wire up webhooks)
